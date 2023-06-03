@@ -38,10 +38,14 @@ for i in range(0,15):
     except:
         print("创建失败，跳过！")
         continue
-
-    while True:
-        try:
-            breakserver(SUBID1)
-        except:
-            print("等待20s再试一次")
+    try:
+        breakserver(SUBID1) 
+    except:
+        while True:
+            print("还是删不掉，等20s后再试一次！")
             time.sleep(20)
+            try:
+                breakserver(SUBID1) 
+                break
+            except:
+                continue
